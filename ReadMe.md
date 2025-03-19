@@ -36,3 +36,18 @@ From the above metrics, we can assess the impact of acceleration using the follo
 
 - **Active Execution Speedup**: 1.53  
 - **Active Execution Gain (%)**: 34.62%
+
+## Modifications
+
+The following modules, programs, and system components have been modified:
+
+### Modules
+- `pw2_group13/modules/profiling`
+- `pw2_group13/modules/grayscale`
+
+### Programs
+- `pw2_group13/programs/grayscale`
+
+### Systems
+- `pw2_group13/systems/singleCore/scripts`
+- `pw2_group13/systems/singleCore/verilog`
