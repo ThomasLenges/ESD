@@ -4,6 +4,7 @@
 #include <vga.h>        // Library for VGA display operations
 
 #define PROFILING 1
+#define ACCELERATING 1
 
 int main () {
   // Buffers to store image data
@@ -67,12 +68,20 @@ int main () {
         // Extract 16-bit RGB565 pixel from buffer with swapped bytes
         uint16_t rgb = swap_u16(rgb565[line*camParams.nrOfPixelsPerLine+pixel]);
 
+#if ACCELERATING
+        uint32_t gray;
+        asm volatile("l.nios_rrr %[out1], %[in1], r0, 0x9"
+                      : [out1] "=r" (gray)
+                      : [in1] "r" (rgb));
+
+#else
         // Extract individual color components from RGB565 format
         uint32_t red1 = ((rgb >> 11) & 0x1F) << 3;
         uint32_t green1 = ((rgb >> 5) & 0x3F) << 2;
         uint32_t blue1 = (rgb & 0x1F) << 3;
         uint32_t gray = ((red1*54+green1*183+blue1*19) >> 8)&0xFF;
 
+#endif
         // Store grayscale pixel in buffer
         grayscale[line*camParams.nrOfPixelsPerLine+pixel] = gray;
       }
@@ -111,3 +120,17 @@ int main () {
 #endif
   }
 }
+
+/*
+Profiling values (without code modifications):
+Execution cycles: ~39000000 cycles
+Stall cycles: ~17680000 cycles
+Bus idle cycles: ~23840000 cycles
+
+Profiling values (with acceleration):
+Execution cycles: ~29110000 cycles
+Stall cycles: ~17080000 cycles
+Bus idle cycles: ~15170000 cycles
+
+Drawn conclusions in provided README
+*/

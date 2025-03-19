@@ -1,0 +1,103 @@
+$date
+	Wed Mar 19 09:25:17 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module rgb565Grayscaleelse_tb $end
+$scope module dut $end
+$var wire 8 ! isId [7:0] $end
+$var wire 1 " start $end
+$var wire 32 # valueA [31:0] $end
+$var wire 32 $ result [31:0] $end
+$var wire 8 % red [7:0] $end
+$var wire 1 & isMe $end
+$var wire 8 ' green [7:0] $end
+$var wire 16 ( grayscale_result [15:0] $end
+$var wire 1 ) done $end
+$var wire 8 * blue [7:0] $end
+$var parameter 8 + customInstructionID $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1100101 +
+$end
+#0
+$dumpvars
+b0 *
+0)
+b0 (
+b0 '
+0&
+b0 %
+b0 $
+b0 #
+0"
+b0 !
+$end
+#10000
+b10000111 $
+b10000111 (
+1)
+b1111000 %
+b10000000 '
+b11111000 *
+1&
+b1100101 !
+b111110000011111 #
+1"
+#20000
+b0 $
+0&
+0)
+0"
+#30000
+b110100 (
+b11111000 %
+b0 '
+b0 *
+1)
+b110100 $
+1&
+b1111100000000000 #
+1"
+#40000
+b10110100 $
+b10110100 (
+b0 %
+b11111100 '
+b11111100000 #
+#50000
+b10010 $
+b10010 (
+b0 '
+b11111000 *
+b11111 #
+#60000
+b11111010 $
+b11111010 (
+b11111000 %
+b11111100 '
+b1111111111111111 #
+#70000
+b0 $
+b0 (
+b0 %
+b0 '
+b0 *
+b0 #
+#80000
+b10000111 (
+0)
+b1111000 %
+b10000000 '
+b11111000 *
+0&
+b1100100 !
+b111110000011111 #
+#90000
