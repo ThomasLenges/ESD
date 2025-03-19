@@ -50,4 +50,8 @@ The following modules, programs, and system components have been modified:
 
 ### Systems
 - `pw2_group13/systems/singleCore/scripts`
+<<<<<<< HEAD
 - `pw2_group13/systems/singleCore/verilog`
+=======
+- `pw2_group13/systems/singleCore/verilog`
+>>>>>>> f66f3f0 (Ready for submission)

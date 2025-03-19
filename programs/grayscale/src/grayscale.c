@@ -126,11 +126,28 @@ Profiling values (without code modifications):
 Execution cycles: ~39000000 cycles
 Stall cycles: ~17680000 cycles
 Bus idle cycles: ~23840000 cycles
+Active execution cycles (execution - stall): ~21320000
 
 Profiling values (with acceleration):
 Execution cycles: ~29110000 cycles
 Stall cycles: ~17080000 cycles
 Bus idle cycles: ~15170000 cycles
+Active execution cycles (execution - stall): ~13940000
 
-Drawn conclusions in provided README
+Drawn conclusions (also provided in README):
+  From the above metrics, we can assess that our acceleration as such impact:
+    Speedup = (Original nb. cycles)/(Accelerated nb. cycles) 
+    Percentage gain = (Original nb. cycles - Accelerated nb. cycles)/(Original nb. cycles)
+      Execution Speedup = 1.34
+      Execution Gain (%) = 25.35%
+
+      Stall Speedup = 1.04
+      Stall Gain (%) = 3.39%
+
+      Bus idle Speedup = 1.57
+      Bus idle Gain (%) = 36.37%
+
+      Active Speedup = 1.53
+      Active Gain (%) = 34.62%
+
 */
