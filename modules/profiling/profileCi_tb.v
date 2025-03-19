@@ -33,7 +33,7 @@ profileCi #(.customId(8'd8)) DUT
 initial
   begin
     s_ciN = 8'h11; // wrong id, output should remain 0
-    s_valueA[1:0] = 2'd0; //select counter0 output
+    s_valueA[1:0] = 4'b0000; //select counter0 output
     s_valueB[11:0] = 12'b000011100001; // enables counter 0, disable others
     s_start = 1'b1;
 
@@ -53,7 +53,7 @@ initial
     s_stall = 1'b1; // counter 1 activates with stall raised
     repeat(5) @(negedge clock);
 
-    s_valueA[1:0] = 2'd00012; //select counter2 output
+    s_valueA[1:0] = 2'd2; //select counter2 output
     s_valueB[11:0] = 12'b000110000111; // enables counter 0 / 1 / 2, disable 4, reset 0
     s_busIdle = 1'b1; // counter 2 activates with busIdle raised
     repeat(5) @(negedge clock);
