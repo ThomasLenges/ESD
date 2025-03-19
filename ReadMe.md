@@ -37,6 +37,7 @@ From the above metrics, we can assess the impact of acceleration using the follo
 - **Active Execution Speedup**: 1.53  
 - **Active Execution Gain (%)**: 34.62%
 
+
 ## Modifications
 
 The following modules, programs, and system components have been modified:
@@ -50,8 +51,8 @@ The following modules, programs, and system components have been modified:
 
 ### Systems
 - `pw2_group13/systems/singleCore/scripts`
-<<<<<<< HEAD
 - `pw2_group13/systems/singleCore/verilog`
-=======
-- `pw2_group13/systems/singleCore/verilog`
->>>>>>> f66f3f0 (Ready for submission)
+
+## Additional
+
+An optimized version of the accelerator (4 pixels at a time) has been implemented. But due to the fact we are unsure that it is properly working (to be verified with TA or teacher) its metrics have not been added to this ReadMe. 

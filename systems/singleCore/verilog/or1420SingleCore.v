@@ -338,10 +338,12 @@ module or1420SingleCore ( input wire         clock12MHz,
   wire [31:0] s_profilingResult;
   wire        s_accDone;
   wire [31:0] s_accResult;
+  wire        s_accDone_opti;
+  wire [31:0] s_accResult_opti;
   
   // Updated 
-  assign s_cpu1CiDone = s_hdmiDone | s_swapByteDone | s_flashDone | s_cpuFreqDone | s_i2cCiDone | s_delayCiDone | s_camCiDone | s_profilingDone | s_accDone;
-  assign s_cpu1CiResult = s_hdmiResult | s_swapByteResult | s_flashResult | s_cpuFreqResult | s_i2cCiResult | s_camCiResult | s_delayResult | s_profilingResult | s_accResult; 
+  assign s_cpu1CiDone = s_hdmiDone | s_swapByteDone | s_flashDone | s_cpuFreqDone | s_i2cCiDone | s_delayCiDone | s_camCiDone | s_profilingDone | s_accDone | s_accDone_opti;
+  assign s_cpu1CiResult = s_hdmiResult | s_swapByteResult | s_flashResult | s_cpuFreqResult | s_i2cCiResult | s_camCiResult | s_delayResult | s_profilingResult | s_accResult | s_accResult_opti; 
 
   or1420Top #( .NOP_INSTRUCTION(32'h1500FFFF)) cpu1
              (.cpuClock(s_systemClock),
@@ -698,6 +700,20 @@ module or1420SingleCore ( input wire         clock12MHz,
                           .isId(s_cpu1CiN),
                           .done(s_accDone),
                           .result(s_accResult));
+
+  
+  /*
+  *
+  * Here we define the CI for accelerating optimized grayscaling (4 pixels at a time)
+  *
+  */
+  rgb565Grayscaleelse_opti #(.customInstructionID(8'd10)) grayscale_acc_opti
+                       (  .start(s_cpu1CiStart),
+                          .valueA(s_cpu1CiDataA),
+                          .valueB(s_cpu1CiDataB),
+                          .isId(s_cpu1CiN),
+                          .done(s_accDone_opti),
+                          .result(s_accResult_opti));
 
 
 endmodule

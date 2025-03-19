@@ -5,6 +5,7 @@
 
 #define PROFILING 1
 #define ACCELERATING 1
+#define ACCELERATING_OPTI 0
 
 int main () {
   // Buffers to store image data
@@ -68,11 +69,22 @@ int main () {
         // Extract 16-bit RGB565 pixel from buffer with swapped bytes
         uint16_t rgb = swap_u16(rgb565[line*camParams.nrOfPixelsPerLine+pixel]);
 
-#if ACCELERATING
+
+#if ACCELERATING_OPTI
+        uint32_t rgbA = *(uint32_t*)&rgb565[line*camParams.nrOfPixelsPerLine+pixel];
+        uint32_t rgbB = *(uint32_t*)&rgb565[line*camParams.nrOfPixelsPerLine+pixel + 2];
+
+        uint32_t gray;
+        asm volatile("l.nios_rrr %[out1], %[in1], %[in2], 0xa"
+          : [out1] "=r" (gray)
+          : [in1] "r" (rgbA), [in2] "r" (rgbB));
+
+#elif ACCELERATING
         uint32_t gray;
         asm volatile("l.nios_rrr %[out1], %[in1], r0, 0x9"
                       : [out1] "=r" (gray)
                       : [in1] "r" (rgb));
+
 
 #else
         // Extract individual color components from RGB565 format
@@ -149,5 +161,4 @@ Drawn conclusions (also provided in README):
 
       Active Speedup = 1.53
       Active Gain (%) = 34.62%
-
 */
