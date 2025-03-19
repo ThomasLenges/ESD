@@ -16,30 +16,23 @@
 From the above metrics, we can assess the impact of acceleration using the following formulas:
 
 #### Formulas Used:
-- **Speedup**:
-
-\[
-\text{Speedup} = \frac{\text{Original number of cycles}}{\text{Accelerated number of cycles}}
-\]
-
-- **Percentage Gain**:
-
-\[
-\text{Percentage Gain} = \left( \frac{\text{Original number of cycles} - \text{Accelerated number of cycles}}{\text{Original number of cycles}} \right) \times 100
-\]
-
-#### Computed Results:
-- **Execution Speedup** = 1.34
-- **Execution Gain (%)** = 25.35%
+- **Speedup** = (Original number of cycles) / (Accelerated number of cycles)
+- **Percentage Gain** = [(Original number of cycles - Accelerated number of cycles) / (Original number of cycles)] * 100
 
 
-- **Stall Speedup** = 1.04
-- **Stall Gain (%)** = 3.39%
+### Computed Results:
+
+- **Execution Speedup**: 1.34  
+- **Execution Gain (%)**: 25.35%  
 
 
-- **Bus Idle Speedup** = 1.57
-- **Bus Idle Gain (%)** = 36.37%
+- **Stall Speedup**: 1.04  
+- **Stall Gain (%)**: 3.39%  
 
 
-- **Active Execution Speedup** = 1.53
-- **Active Execution Gain (%)** = 34.62% 
+- **Bus Idle Speedup**: 1.57  
+- **Bus Idle Gain (%)**: 36.37%  
+
+
+- **Active Execution Speedup**: 1.53  
+- **Active Execution Gain (%)**: 34.62%
